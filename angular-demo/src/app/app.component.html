@@ -1,0 +1,65 @@
+<!-- 
+  App Component Template
+  
+  Displays a list of users fetched from the API.
+  Uses the async pipe to automatically subscribe/unsubscribe from the Observable.
+-->
+
+<div class="container">
+  <header>
+    <h1>👻 GhostMocks Demo</h1>
+    <p class="subtitle">User List from JSONPlaceholder API</p>
+  </header>
+
+  <main>
+    <!-- 
+      async pipe: 
+      - Automatically subscribes to the Observable
+      - Updates view when data arrives
+      - Unsubscribes when component is destroyed
+    -->
+    <div *ngIf="users$ | async as users; else loading">
+      <div class="user-count">
+        <strong>{{ users.length }}</strong> users loaded
+      </div>
+      
+      <ul class="user-list">
+        <!-- Loop through each user and display their information -->
+        <li *ngFor="let user of users" class="user-card">
+          <div class="user-header">
+            <h3>{{ user.name }}</h3>
+            <span class="username">{{ '@' + user.username }}</span>
+          </div>
+          <div class="user-details">
+            <p>📧 {{ user.email }}</p>
+            <p *ngIf="user.phone">📞 {{ user.phone }}</p>
+            <p *ngIf="user.website">🌐 {{ user.website }}</p>
+            <p *ngIf="user.company" class="company">
+              🏢 {{ user.company.name }}
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Loading state shown while data is being fetched -->
+    <ng-template #loading>
+      <div class="loading">
+        <div class="spinner"></div>
+        <p>Loading users...</p>
+      </div>
+    </ng-template>
+  </main>
+
+  <footer>
+    <p>
+      This app fetches real data from 
+      <a href="https://jsonplaceholder.typicode.com" target="_blank">
+        JSONPlaceholder
+      </a>
+    </p>
+    <p class="hint">
+      💡 Run Playwright tests to see network interception with mock data!
+    </p>
+  </footer>
+</div>

@@ -1,0 +1,25 @@
+{
+  "name": "ghostmocks-demo",
+  "version": "1.0.0",
+  "description": "A 10-minute demo of recording, mocking, and testing HTTP APIs",
+  "scripts": {
+    "generate": "node cli/index.js sample.har",
+    "start:app": "cd angular-demo && npm start",
+    "build:app": "cd angular-demo && npm run build",
+    "test": "cd angular-demo && npm test",
+    "test:ui": "cd angular-demo && npm test -- --ui",
+    "install:all": "npm install && cd angular-demo && npm install"
+  },
+  "keywords": [
+    "mock",
+    "testing",
+    "playwright",
+    "angular",
+    "har",
+    "fixtures"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {}
+}
